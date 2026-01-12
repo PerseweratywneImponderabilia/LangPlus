@@ -1,13 +1,21 @@
 # LangPlus
 
-[![sampctl](https://img.shields.io/badge/sampctl-LangPlus-2f2f2f.svg?style=for-the-badge)](https://github.com/mysy00/LangPlus)
+[![sampctl](https://img.shields.io/badge/sampctl-LangPlus-2f2f2f.svg?style=for-the-badge)](https://github.com/PerseweratywneImponderabilia/LangPlus)
 
-A lightweight multilanguage library for open.mp servers. Uses simple INI files for translations and provides an easy-to-use API for managing player languages.
+A lightweight multilanguage library for open.mp servers. Uses INI files for translations and provides an easy-to-use API for managing player languages.
+
+
+## Features
+- **Fallback system** - Missing keys fall back to the default language; if that fails, the `key` itself is used
+- **String replacements** - Use `SetStringReplacement()` for dynamic text substitution
+- **Format specifiers** - Full support for format specifiers, such as: `%d`, `%s`, `%.2f`, etc.
+- **Non-latin character support** - Support for non-latin characters, such as cyrillic alphabet; use proper file encoding for the desired characters
+
 
 ## Installation
 
 ```bash
-sampctl install mysy00/LangPlus
+sampctl install PerseweratywneImponderabilia/LangPlus
 ```
 
 ```pawn
@@ -91,9 +99,9 @@ Example:
 
 Language files use INI format with the following rules:
 
-- **Key format**: Keys must start with a letter (a-z, A-Z), digit (0-9), or symbol (`!`, `@`, `$`, `&`)
+- **Key format**: Keys must start with a letter (a-z, A-Z), digit (0-9), or a certain symbol (`!`, `@`, `$`, `&`)
 - **Delimiter**: Keys and values are separated by `=` (configurable via `DELIMITER_CHAR`)
-- **Comments**: Lines starting with other characters are ignored (e.g., `;`, `#`, `[`)
+- **Comments**: Lines starting with other characters are ignored by the parser (e.g., `;`, `#`, `[`)
 - **Escape sequences**: Supports `\n`, `\t`, etc. in values
 - **Format specifiers**: Values can contain `%d`, `%s`, `%f`, and other format specifiers
 
@@ -104,14 +112,6 @@ WELCOME_MESSAGE=Welcome, player %d!
 @ADMIN_COMMAND=Admin %s used command
 $ERROR_MESSAGE=Error: %s
 ```
-
-## Features
-
-- **Fallback system** - Missing keys fall back to the default language, that is: Language:0
-- **String replacements** - Use `SetStringReplacement()` for dynamic text substitution
-- **Format specifiers** - Full support for `%d`, `%s`, `%f`, etc.
-- **Escape sequences** - Supports `\n`, `\t` in language files
-- **Auto-trimming** - Keys and values automatically trimmed
 
 ## Testing
 
