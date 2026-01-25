@@ -60,17 +60,22 @@ PLAYER_JOINED=Гравець %d приєднався
 
 | Function | Description |
 |----------|-------------|
-| `Language:LoadLanguage(code[], name[], fileName[])` | Load a language from INI file |
+| `Language:LoadLanguage(code[], name[], fileName[])` | Load a language. Looks for the file in the `DIRECTORY_LANGUAGES` directory; file name is `fileName`, `name.ini`, `code.ini` respectively. |
 | `SetPlayerLanguage(playerid, Language:id)` | Set player's language |
 | `Language:GetPlayerLanguage(playerid)` | Get player's current language |
 | `SendLanguageMessage(playerid, colour, key[], ...)` | Send localized message to player (supports format specifiers) |
 | `SendLanguageMessageToAll(colour, key[], ...)` | Send localized message to all players in their language |
 | `GetLanguageString(Language:id, key[], output[], len)` | Get translated string for a language |
-| `ReturnLanguageString(Language:id, key[])` | Return translated string (use immediately) |
+| `ReturnLanguageString(Language:id, key[])` | Return translated string |
+| `String:ReturnLanguageString_s(Language:id, key[])` | Return translated PawnPlus string |
 | `GetLanguageCount()` | Get number of loaded languages |
-| `bool:HasLanguage(code[])` | Check if language exists |
-| `GetLanguageList(languages[][], maxSize)` | Get array of language display names |
+| `bool:DoesLanguageCodeExist(code[])` | Check if language exists |
+| `bool:DoesLanguageNameExist(code[])` | Check if language exists |
+| `GetLanguageCodeList(string:codes[][], maxSize)` | Get array of language codes |
+| `GetLanguageNameList(string:names[][], maxSize)` | Get array of language names |
 | `SetStringReplacement(key[], value[])` | Define replacement for language loading (call before `LoadLanguage`) |
+| `@L(playerid, key[])` | Macro for `ReturnLanguageString(GetPlayerLanguage(playerid), key)` |
+| `@LS(playerid, key[])` | Macro for `ReturnLanguageString_s(GetPlayerLanguage(playerid), key)` |
 
 ## Configuration
 
@@ -87,6 +92,7 @@ Define before including the library:
 | `MAX_FILE_NAME` | `64` | Maximum file name length |
 | `MAX_REPLACEMENT_KEY_LEN` | `16` | Maximum replacement key length |
 | `MAX_REPLACEMENT_VALUE_LEN` | `16` | Maximum replacement value length |
+| `LANGPLUS_NO_MACROS` | `` | Define to disable @L and @LS macros |
 
 Example:
 ```pawn

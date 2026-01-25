@@ -1,6 +1,7 @@
 {
 	"user": "mysy00",
 	"repo": "LangPlus",
+	"preset": "openmp",
 	"entry": "test.pwn",
 	"output": "gamemodes/test.amx",
 	"dependencies": [
@@ -13,9 +14,6 @@
 	],
 	"dev_dependencies": [
 		"AmyrAhmady/samp-plugin-crashdetect:v4.22",
-		"Southclaws/samp-logger"
-	],
-	"runtime": {
-		"version": "openmp"
-	}
+		"Southclaws/samp-logger:1.5.0"
+	]
 }

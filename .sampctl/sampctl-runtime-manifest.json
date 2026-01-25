@@ -1,0 +1,139 @@
+{
+  "version": "openmp",
+  "platform": "windows",
+  "runtime_type": "openmp",
+  "files": [
+    {
+      "path": "components/Actors.dll",
+      "size": 127488,
+      "hash": "07803da3da0e22e5f084303629da61d072789bf48ef5fe19bb2a59d1e9857e8e",
+      "mode": 438
+    },
+    {
+      "path": "components/Checkpoints.dll",
+      "size": 99328,
+      "hash": "0ef3f7e268938eb56b418e9bbaeceef6f927a23cf4a20a33e12c46814a041a3f",
+      "mode": 438
+    },
+    {
+      "path": "components/Classes.dll",
+      "size": 110080,
+      "hash": "031a6d6c20442c7285c740e7ad32a1ecc18fad4d674479247b38a5f565981d92",
+      "mode": 438
+    },
+    {
+      "path": "components/Console.dll",
+      "size": 182272,
+      "hash": "7d0789e32f144a7c7f1d8a95640fcb54aaa2978946eb54ee90b43784358ab0f1",
+      "mode": 438
+    },
+    {
+      "path": "components/CustomModels.dll",
+      "size": 557056,
+      "hash": "fdd06a7a044abcd1f04c6d9023ff1984b0743a1f73963ef8c4921fba36330040",
+      "mode": 438
+    },
+    {
+      "path": "components/Databases.dll",
+      "size": 801280,
+      "hash": "65bac680eb1a0aab63306fc065f925c01a5efb05a61cd82b059c7d0823906a33",
+      "mode": 438
+    },
+    {
+      "path": "components/Dialogs.dll",
+      "size": 101376,
+      "hash": "21e4bd822c5a95e6ca1cdf0239bd6c932037f9ca30fcbfef8746ca89cfa0ba12",
+      "mode": 438
+    },
+    {
+      "path": "components/GangZones.dll",
+      "size": 121856,
+      "hash": "d3d4e408f5dbc388df8a01610d9828d5168ed04fee13e47d17653140a33f1c1a",
+      "mode": 438
+    },
+    {
+      "path": "components/LegacyConfig.dll",
+      "size": 282112,
+      "hash": "c4a7d17169c7f62214b5987deb88be94e474dfe7c931529db9ed7fe837e75ef4",
+      "mode": 438
+    },
+    {
+      "path": "components/LegacyNetwork.dll",
+      "size": 677376,
+      "hash": "53d1f76809cc3ee6f933d80649d686dfb1c1d6e50d3fe400bbb79ab77587b437",
+      "mode": 438
+    },
+    {
+      "path": "components/Menus.dll",
+      "size": 123392,
+      "hash": "fa181b80fb00b470099064773bd3a51ca5c92bb28e128d33bbdbcdca11d55b0e",
+      "mode": 438
+    },
+    {
+      "path": "components/NPCs.dll",
+      "size": 753664,
+      "hash": "ff91bffa3c9fec8983fc9b96a1a2b077bf6ecedefcfb6aeed1a097504187347c",
+      "mode": 438
+    },
+    {
+      "path": "components/Objects.dll",
+      "size": 189952,
+      "hash": "4eb46cdec0c9706eb3f93b1a4810f957147343551945376f484110b1891ac63f",
+      "mode": 438
+    },
+    {
+      "path": "components/Pawn.dll",
+      "size": 1906176,
+      "hash": "1453d44974b565817c2020e30c50f452914b89bf6fb912910253328d6bcdcb9a",
+      "mode": 438
+    },
+    {
+      "path": "components/Pickups.dll",
+      "size": 119808,
+      "hash": "a6daa9dba930a87295692168f0289eca36cf134c3f358c32f1321e9b51f13105",
+      "mode": 438
+    },
+    {
+      "path": "components/Recordings.dll",
+      "size": 297984,
+      "hash": "1f8d2791bc6c50b736e54877f107a1276745c664d0b5053726d1f8e3a837089c",
+      "mode": 438
+    },
+    {
+      "path": "components/TextDraws.dll",
+      "size": 138240,
+      "hash": "011da25047c8e7bbdd3979b87922e7e571b301ec044ee026cba2169661341eae",
+      "mode": 438
+    },
+    {
+      "path": "components/TextLabels.dll",
+      "size": 132608,
+      "hash": "c6dc026631fc308b1b94b54d4f956c8e1cc8e045dc955fd9222b0b9968e522ba",
+      "mode": 438
+    },
+    {
+      "path": "components/Timers.dll",
+      "size": 86016,
+      "hash": "aa04962740656535685cd822173c0b3e6bc0555db15f9d9973e8f7a3cce3ed06",
+      "mode": 438
+    },
+    {
+      "path": "components/Variables.dll",
+      "size": 98304,
+      "hash": "f40508bc3185f88f757058e8eefe5be53033f19e5ec5fa290db3dd1b824f6658",
+      "mode": 438
+    },
+    {
+      "path": "components/Vehicles.dll",
+      "size": 185856,
+      "hash": "03c368ad5d1fbf94701d77b83d6b43fdcfc98e804381beb8fdf5612c9fd8323b",
+      "mode": 438
+    },
+    {
+      "path": "omp-server.exe",
+      "size": 3876864,
+      "hash": "690363cc8d4708685eb2bfcfdc117abfc1293c5606fe5f8a4bbb3d53591c2829",
+      "mode": 438
+    }
+  ]
+}
