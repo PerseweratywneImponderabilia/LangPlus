@@ -121,5 +121,10 @@ public OnPlayerConnect(playerid) {
     SendLanguageMessageToAll(0xFFFFFFFF, "TEST_SCM", 2137, 69, 420);
     #endif
 
+    // GetPlayerLanguageName
+    new languageName[MAX_LANGUAGE_NAME];
+    GetPlayerLanguageName(playerid, languageName);
+    printf("Currently set language: %s", languageName);
+
     return 1;
 }

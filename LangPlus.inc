@@ -613,7 +613,7 @@ stock Language:GetPlayerLanguageName(playerid, string:output[] = "", len = sizeo
         return INVALID_LANGUAGE_ID;
     }
 
-    GetLanguageName(s_PlayerLanguage[playerid], output);
+    GetLanguageName(s_PlayerLanguage[playerid], output, len);
 
     return s_PlayerLanguage[playerid];
 }
