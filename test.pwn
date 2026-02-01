@@ -7,6 +7,7 @@
 // #define LANGPLUS_REPLACE_NATIVES
 
 #include <open.mp>
+#tryinclude <YSI_Coding/y_va>
 #include "LangPlus.inc"
 
 main() {}
@@ -27,20 +28,29 @@ public OnGameModeInit() {
     print("#########################################");
 
     printf("Total languages loaded: %d", GetLanguageCount());
-    printf("Has 'en': %d", HasLanguage("en"));
-    printf("Has 'uk': %d", HasLanguage("uk"));
-    printf("Has 'fr': %d", HasLanguage("fr"));
+    printf("Has 'en': %d", DoesLanguageCodeExist("en"));
+    printf("Has 'uk': %d", DoesLanguageCodeExist("uk"));
+    printf("Has 'fr': %d", DoesLanguageCodeExist("fr"));
+    printf("Has 'English': %d", DoesLanguageNameExist("English"));
+    printf("Has 'Ukrainian': %d", DoesLanguageNameExist("Ukrainian"));
+    printf("Has 'French': %d", DoesLanguageNameExist("French"));
 
     print("#########################################");
-    print("## TEST: GetLanguageList ##");
+    print("## TEST: GetLanguageNameList/GetLanguageCodeList ##");
     print("#########################################");
 
-    new langList[MAX_LANGUAGES][MAX_LANGUAGE_NAME];
-    new langCount = GetLanguageList(langList);
+    const MAX_LANGUAGE_CODE = 4;
+
+    new langNames[MAX_LANGUAGES][MAX_LANGUAGE_NAME];
+    new langCodes[MAX_LANGUAGES][MAX_LANGUAGE_CODE];
+    new langCount = GetLanguageCount();
+
+    GetLanguageNameList(langNames, MAX_LANGUAGES * MAX_LANGUAGE_NAME);
+    GetLanguageCodeList(langCodes, MAX_LANGUAGES * MAX_LANGUAGE_CODE);
 
     printf("Available languages: %d", langCount);
     for (new i = 0; i < langCount; i++) {
-        printf("%s", langList[i]);
+        printf("[%s] %s", langCodes[i], langNames[i]);
     }
 
     print("#########################################");
@@ -87,12 +97,16 @@ public OnPlayerConnect(playerid) {
     // Test with English
     SetPlayerLanguage(playerid, g_LangEnglish);
     SendLanguageMessage(playerid, -1, "TEST_LANG");
+    #if(defined _y_va_included)
     SendLanguageMessage(playerid, 0xFF0000FF, "TEST_SCM", 2137, 69, 420);
+    #endif
 
     // Test with Ukrainian
     SetPlayerLanguage(playerid, g_LangUkrainian);
     SendLanguageMessage(playerid, -1, "TEST_LANG");
+    #if(defined _y_va_included)
     SendLanguageMessage(playerid, 0x00FF00FF, "TEST_SCM", 2137, 69, 420);
+    #endif
 
     // Test fallback (key only in English)
     SendLanguageMessage(playerid, 0xFFFF00FF, "KEYONLYENGLISH");
@@ -103,7 +117,9 @@ public OnPlayerConnect(playerid) {
 
     // Send to all - each player will receive message in their language
     SendLanguageMessageToAll(-1, "TEST_LANG");
+    #if(defined _y_va_included)
     SendLanguageMessageToAll(0xFFFFFFFF, "TEST_SCM", 2137, 69, 420);
+    #endif
 
     return 1;
 }

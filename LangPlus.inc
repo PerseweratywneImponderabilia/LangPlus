@@ -151,7 +151,7 @@ static Language:_InitLanguage(const string:code[], const string:name[]) {
     }
 
     new Language:languageid = Language:pool_add_str(s_LanguagePool, code);
-    map_set_arr(s_LanguageNames, _:languageid, name, MAX_LANGUAGE_NAME);
+    map_add_str(s_LanguageNames, _:languageid, name);
 
     return languageid;
 }
@@ -398,32 +398,6 @@ stock GetLanguageCount() {
     return pool_size(s_LanguagePool);
 }
 
-stock bool:DoesLanguageCodeExist(const string:code[]) {
-    if (!s_LanguagePoolInitialized || code[0] == EOS) {
-        return false;
-    }
-
-    return pool_find_str(s_LanguagePool, code) != -1;
-}
-
-stock bool:DoesLanguageNameExist(const string:name[]) {
-    if (!s_LanguagePoolInitialized || name[0] == EOS) {
-        return false;
-    }
-
-    for_pool(it : s_LanguagePool) {
-        new Language:langid = Language:iter_get_key(it);
-        new string:langName[MAX_LANGUAGE_NAME];
-        map_get_arr(s_LanguageNames, _:langid, langName, MAX_LANGUAGE_NAME);
-        
-        if (strcmp(langName, name) == 0) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 stock Language:GetLanguageIdByCode(const string:code[]) {
     if (!s_LanguagePoolInitialized || code[0] == EOS) {
         #if(defined _logger_included)
@@ -458,6 +432,14 @@ stock Language:GetLanguageIdByName(const string:name[]) {
     return INVALID_LANGUAGE_ID;
 }
 
+stock bool:DoesLanguageCodeExist(const string:code[]) {
+    return GetLanguageIdByCode(code) != INVALID_LANGUAGE_ID;
+}
+
+stock bool:DoesLanguageNameExist(const string:name[]) {
+    return GetLanguageIdByName(name) != INVALID_LANGUAGE_ID;
+}
+
 stock GetLanguageCodeList(string:codes[][], maxSize = sizeof(codes)) {
     if (!s_LanguagePoolInitialized) {
         #if(defined _logger_included)
@@ -466,16 +448,11 @@ stock GetLanguageCodeList(string:codes[][], maxSize = sizeof(codes)) {
         return 0;
     }
 
-    new index,
-        poolSize = pool_size(s_LanguagePool),
-        limit = (poolSize < maxSize) ? poolSize : maxSize;
+    new index;
 
     for_pool(it : s_LanguagePool) {
-        if (index >= limit) {
-            break;
-        }
         new Language:langid = Language:iter_get_key(it);
-        pool_get_value_str(s_LanguagePool, _:langid, codes[index], MAX_LANGUAGE_NAME);
+        pool_get_str(s_LanguagePool, _:langid, codes[index], maxSize);
         index++;
     }
 
@@ -490,16 +467,10 @@ stock GetLanguageNameList(string:names[][], maxSize = sizeof(names)) {
         return 0;
     }
 
-    new index,
-        poolSize = pool_size(s_LanguagePool),
-        limit = (poolSize < maxSize) ? poolSize : maxSize;
-
+    new index;
     for_pool(it : s_LanguagePool) {
-        if (index >= limit) {
-            break;
-        }
         new Language:langid = Language:iter_get_key(it);
-        map_get_arr(s_LanguageNames, _:langid, names[index], MAX_LANGUAGE_NAME);
+        map_get_str(s_LanguageNames, _:langid, names[index], maxSize);
         index++;
     }
 
@@ -531,7 +502,7 @@ stock bool:GetLanguageName(Language:languageid, string:output[] = "", len = size
         return false;
     }
 
-    map_get_arr(s_LanguageNames, _:languageid, output, len);
+    map_get_str(s_LanguageNames, _:languageid, output, len);
 
     return output[0] != '\0';
 }
@@ -649,13 +620,7 @@ stock Language:GetPlayerLanguageName(playerid, string:output[] = "", len = sizeo
 
 #if defined _INC_y_va
 stock bool:SendLanguageMessage(playerid, colour, const string:key[], {Float, _}:...) {
-    new Language:langid = GetPlayerLanguage(playerid);
-    if (langid == INVALID_LANGUAGE_ID) {
-        return false;
-    }
-
-    SendClientMessage(playerid, colour, @L(playerid, key), ___(3));
-    return true;
+    return SendClientMessage(playerid, colour, ReturnLanguageString(GetPlayerLanguage(playerid), key), ___(3));
 }
 
 stock bool:SendLanguageMessageToAll(colour, const string:key[], {Float, _}:...) {
@@ -671,12 +636,29 @@ stock bool:SendLanguageMessageToAll(colour, const string:key[], {Float, _}:...) 
         }
         #endif
 
-        new Language:langid = GetPlayerLanguage(i);
-        if (langid == INVALID_LANGUAGE_ID) {
+        SendClientMessage(i, colour, ReturnLanguageString(GetPlayerLanguage(i), key), ___(2));
+    }
+    return true;
+}
+#else
+stock bool:SendLanguageMessage(playerid, colour, const string:key[]) {
+    return SendClientMessage(playerid, colour, ReturnLanguageString(GetPlayerLanguage(playerid), key));
+}
+
+stock bool:SendLanguageMessageToAll(colour, const string:key[]) {
+    #if defined _foreach_included || defined foreach_included || defined _Y_ITERATE_LOCAL_VERSION
+    foreach (new i : Player)
+    #else
+    for (new i = 0; i < GetMaxPlayers(); i++)
+    #endif
+    {
+        #if !defined _foreach_included && !defined foreach_included && !defined _Y_ITERATE_LOCAL_VERSION
+        if (!IsPlayerConnected(i)) {
             continue;
         }
+        #endif
 
-        SendClientMessage(i, colour, @L(i, key), ___(2));
+        SendClientMessage(i, colour, ReturnLanguageString(GetPlayerLanguage(i), key));
     }
     return true;
 }
