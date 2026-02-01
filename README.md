@@ -22,6 +22,13 @@ sampctl install PerseweratywneImponderabilia/LangPlus
 #include <LangPlus>
 ```
 
+### Note
+Make sure these definitions are declared before you include `PawnPlus`, preferably at the very top of your main gamemode file:
+```pawn
+#define PP_SYNTAX_FOR_POOL
+#define PP_SYNTAX_FOR_MAP
+```
+
 ## Quick Start
 
 **`gamemodes/main.pwn`**
