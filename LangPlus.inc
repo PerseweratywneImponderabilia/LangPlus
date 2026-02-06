@@ -53,6 +53,10 @@
 	#define MAX_LANGUAGE_NAME (32)
 #endif
 
+#if !defined MAX_LANGUAGE_CODE
+    #define MAX_LANGUAGE_CODE (8)
+#endif
+
 // Max file name length for a language file
 #if !defined MAX_FILE_NAME
     #define MAX_FILE_NAME (64)
@@ -440,7 +444,7 @@ stock bool:DoesLanguageNameExist(const string:name[]) {
     return GetLanguageIdByName(name) != INVALID_LANGUAGE_ID;
 }
 
-stock GetLanguageCodeList(string:codes[][], maxSize = sizeof(codes)) {
+stock GetLanguageCodeList(string:codes[][], maxSize = MAX_LANGUAGE_CODE) {
     if (!s_LanguagePoolInitialized) {
         #if(defined _logger_included)
         Logger_Dbg("langplus", "no languages have been initialized");
@@ -459,7 +463,7 @@ stock GetLanguageCodeList(string:codes[][], maxSize = sizeof(codes)) {
     return index;
 }
 
-stock GetLanguageNameList(string:names[][], maxSize = sizeof(names)) {
+stock GetLanguageNameList(string:names[][], maxSize = MAX_LANGUAGE_NAME) {
     if (!s_LanguagePoolInitialized) {
         #if(defined _logger_included)
         Logger_Dbg("langplus", "no languages have been initialized");

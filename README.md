@@ -96,6 +96,7 @@ Define before including the library:
 | `MAX_LANGUAGE_KEY_LEN` | `32` | Maximum key length |
 | `MAX_LANGUAGE_ENTRY_LENGTH` | `768` | Maximum translation length |
 | `MAX_LANGUAGE_NAME` | `32` | Maximum language name length |
+| `MAX_LANGUAGE_CODE` | `8` | Maximum language code length |
 | `MAX_FILE_NAME` | `64` | Maximum file name length |
 | `MAX_REPLACEMENT_KEY_LEN` | `16` | Maximum replacement key length |
 | `MAX_REPLACEMENT_VALUE_LEN` | `16` | Maximum replacement value length |
